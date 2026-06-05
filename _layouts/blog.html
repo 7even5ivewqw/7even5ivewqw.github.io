@@ -21,11 +21,97 @@
         {{ content }}
     </main>
 
+    <!-- 编辑博客弹窗 -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+            <h3>编辑博文</h3>
+            <input type="hidden" id="edit-id">
+            <div class="form-group">
+                <label>标题</label>
+                <input type="text" id="edit-title" class="form-input">
+            </div>
+            <div class="form-group">
+                <label>分类</label>
+                <select id="edit-category" class="form-input">
+                    <option>技术分享</option>
+                    <option>读书随笔</option>
+                    <option>生活感悟</option>
+                    <option>学术交流</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>内容</label>
+                <textarea id="edit-content" class="form-textarea"></textarea>
+            </div>
+            <button class="submit-btn" onclick="saveEdit()">保存修改</button>
+        </div>
+    </div>
+
     <footer class="blog-footer">
         <p>&copy; 2024 柒伍的博客 | 愿文字温暖时光</p>
     </footer>
 
     <script>
+        // 初始化博客数据
+        function initPosts() {
+            var posts = localStorage.getItem('blog_posts');
+            if (!posts) {
+                var defaultPosts = [
+                    {
+                        id: 1,
+                        title: '智能科学之路上的点滴思考',
+                        category: '技术分享',
+                        content: '回顾在云南大学学习智能科学与技术的这段时光，从初识AI到深入学习机器学习，每一步都充满挑战与收获。人工智能不仅是一门技术，更是一种改变世界的力量。在这个领域，我看到了无限的可能性。',
+                        date: '2024年6月'
+                    },
+                    {
+                        id: 2,
+                        title: '代码与文学的对话',
+                        category: '生活感悟',
+                        content: '编程不仅仅是技术，更是一种表达。正如文字可以描绘山河，代码也能构建虚拟世界的美好。在键盘上敲击的每一个字符，都是思想的延伸，是逻辑的诗篇。',
+                        date: '2024年5月'
+                    },
+                    {
+                        id: 3,
+                        title: '读书随笔：技术与人文的交融',
+                        category: '读书随笔',
+                        content: '在技术的海洋中遨游时，偶尔也要停下脚步，品读经典，让心灵得到滋养。技术与人文并非对立，而是相辅相成。一个优秀的工程师，应该既有严谨的逻辑思维，又有丰富的人文情怀。',
+                        date: '2024年4月'
+                    }
+                ];
+                localStorage.setItem('blog_posts', JSON.stringify(defaultPosts));
+            }
+            renderPosts();
+        }
+
+        // 渲染博客列表
+        function renderPosts() {
+            var posts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            var postsGrid = document.getElementById('posts-grid');
+            
+            if (!postsGrid) return;
+            
+            postsGrid.innerHTML = '';
+            
+            posts.forEach(function(post) {
+                var postCard = document.createElement('div');
+                postCard.className = 'post-card';
+                postCard.innerHTML = `
+                    <div class="post-category">${post.category}</div>
+                    <div class="post-date">${post.date}</div>
+                    <h3 class="post-title">${post.title}</h3>
+                    <p class="post-excerpt">${post.content.substring(0, 100)}...</p>
+                    <div class="post-actions">
+                        <button class="action-btn edit-btn" onclick="openEditModal(${post.id})">编辑</button>
+                        <button class="action-btn delete-btn" onclick="deletePost(${post.id})">删除</button>
+                    </div>
+                    <button class="read-more-btn" onclick="showPostDetail(${post.id})">阅读全文</button>
+                `;
+                postsGrid.appendChild(postCard);
+            });
+        }
+
         // 密码验证功能
         function checkBirthday() {
             var input = document.getElementById('birthday-input').value;
@@ -38,6 +124,110 @@
             } else {
                 result.innerHTML = '<span style="color: #c62828;">✗ 答案错误，请重试</span>';
                 uploadForm.style.display = 'none';
+            }
+        }
+
+        // 提交博客
+        function submitPost() {
+            var title = document.getElementById('post-title').value;
+            var category = document.getElementById('post-category').value;
+            var content = document.getElementById('post-content').value;
+            
+            if (!title || !content) {
+                alert('请填写标题和内容');
+                return;
+            }
+            
+            var posts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            var newPost = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                content: content,
+                date: new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long' })
+            };
+            
+            posts.unshift(newPost);
+            localStorage.setItem('blog_posts', JSON.stringify(posts));
+            
+            // 清空表单
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-category').value = '技术分享';
+            document.getElementById('post-content').value = '';
+            
+            // 重新渲染博客列表
+            renderPosts();
+            
+            alert('博文发布成功！');
+        }
+
+        // 打开编辑弹窗
+        function openEditModal(id) {
+            var posts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            var post = posts.find(function(p) { return p.id === id; });
+            
+            if (post) {
+                document.getElementById('edit-id').value = post.id;
+                document.getElementById('edit-title').value = post.title;
+                document.getElementById('edit-category').value = post.category;
+                document.getElementById('edit-content').value = post.content;
+                document.getElementById('edit-modal').style.display = 'block';
+            }
+        }
+
+        // 关闭编辑弹窗
+        function closeEditModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+        }
+
+        // 保存编辑
+        function saveEdit() {
+            var id = parseInt(document.getElementById('edit-id').value);
+            var title = document.getElementById('edit-title').value;
+            var category = document.getElementById('edit-category').value;
+            var content = document.getElementById('edit-content').value;
+            
+            if (!title || !content) {
+                alert('请填写标题和内容');
+                return;
+            }
+            
+            var posts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            posts = posts.map(function(p) {
+                if (p.id === id) {
+                    return { ...p, title: title, category: category, content: content };
+                }
+                return p;
+            });
+            
+            localStorage.setItem('blog_posts', JSON.stringify(posts));
+            closeEditModal();
+            renderPosts();
+            
+            alert('博文修改成功！');
+        }
+
+        // 删除博客
+        function deletePost(id) {
+            if (!confirm('确定要删除这篇博文吗？')) {
+                return;
+            }
+            
+            var posts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            posts = posts.filter(function(p) { return p.id !== id; });
+            localStorage.setItem('blog_posts', JSON.stringify(posts));
+            renderPosts();
+            
+            alert('博文已删除！');
+        }
+
+        // 显示博客详情
+        function showPostDetail(id) {
+            var posts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            var post = posts.find(function(p) { return p.id === id; });
+            
+            if (post) {
+                alert(`【${post.category}】\n\n${post.title}\n\n${post.date}\n\n${post.content}`);
             }
         }
 
@@ -71,6 +261,19 @@
             document.getElementById('message-content').value = '';
             
             alert('留言提交成功！');
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initPosts();
+        });
+
+        // 点击弹窗外部关闭
+        window.onclick = function(event) {
+            var modal = document.getElementById('edit-modal');
+            if (event.target === modal) {
+                closeEditModal();
+            }
         }
     </script>
 </body>

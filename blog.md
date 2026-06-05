@@ -56,22 +56,8 @@ title: 柒伍的博客
 
 <div id="posts" class="posts-section">
     <h2 class="posts-title">博文精选</h2>
-    <div class="posts-grid">
-        <div class="post-card">
-            <div class="post-date">2024年6月</div>
-            <h3 class="post-title">智能科学之路上的点滴思考</h3>
-            <p class="post-excerpt">回顾在云南大学学习智能科学与技术的这段时光，从初识AI到深入学习机器学习，每一步都充满挑战与收获...</p>
-        </div>
-        <div class="post-card">
-            <div class="post-date">2024年5月</div>
-            <h3 class="post-title">代码与文学的对话</h3>
-            <p class="post-excerpt">编程不仅仅是技术，更是一种表达。正如文字可以描绘山河，代码也能构建虚拟世界的美好...</p>
-        </div>
-        <div class="post-card">
-            <div class="post-date">2024年4月</div>
-            <h3 class="post-title">读书随笔：技术与人文的交融</h3>
-            <p class="post-excerpt">在技术的海洋中遨游时，偶尔也要停下脚步，品读经典，让心灵得到滋养...</p>
-        </div>
+    <div id="posts-grid" class="posts-grid">
+        <!-- 博客内容将通过JavaScript动态生成 -->
     </div>
 </div>
 
@@ -124,11 +110,11 @@ title: 柒伍的博客
         <div class="message-form">
             <div class="form-group">
                 <label class="form-label">博文标题</label>
-                <input type="text" class="form-input" placeholder="请输入博文标题">
+                <input type="text" id="post-title" class="form-input" placeholder="请输入博文标题">
             </div>
             <div class="form-group">
                 <label class="form-label">博文分类</label>
-                <select class="form-input">
+                <select id="post-category" class="form-input">
                     <option>技术分享</option>
                     <option>读书随笔</option>
                     <option>生活感悟</option>
@@ -137,9 +123,9 @@ title: 柒伍的博客
             </div>
             <div class="form-group">
                 <label class="form-label">博文内容</label>
-                <textarea class="form-textarea" placeholder="写下你的博文内容..."></textarea>
+                <textarea id="post-content" class="form-textarea" placeholder="写下你的博文内容..."></textarea>
             </div>
-            <button class="submit-btn">发布博文</button>
+            <button class="submit-btn" onclick="submitPost()">发布博文</button>
         </div>
     </div>
 </div>
