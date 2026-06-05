@@ -1,0 +1,279 @@
+/* 全局样式 - 淡绿色背景 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+    min-height: 100vh;
+    color: #2e7d32;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* 顶部标题区 */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.15);
+}
+
+.main-title {
+    font-size: 3em;
+    color: #1b5e20;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: #388e3c;
+    font-weight: 300;
+}
+
+/* 产品展示区 */
+.products-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(76, 175, 80, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(165, 214, 167, 0.5);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(76, 175, 80, 0.3);
+}
+
+.left-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(200, 230, 201, 0.6) 100%);
+}
+
+.right-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 235, 205, 0.5) 100%);
+}
+
+.product-image-wrapper {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid #a5d6a7;
+}
+
+.product-image {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-svg {
+    width: 85%;
+    height: 85%;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.product-card:hover .product-svg {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.product-name {
+    font-size: 2em;
+    color: #1b5e20;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-slogan {
+    font-size: 1.3em;
+    color: #4caf50;
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.product-desc {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.8;
+    padding: 0 10px;
+}
+
+/* 健康倡导区 */
+.health-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.health-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    padding: 50px 60px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(76, 175, 80, 0.25);
+    max-width: 800px;
+    width: 100%;
+    border: 3px solid #81c784;
+    position: relative;
+    overflow: hidden;
+}
+
+.health-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(165, 214, 167, 0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.health-title {
+    font-size: 2.2em;
+    color: #1b5e20;
+    margin-bottom: 25px;
+    font-weight: 700;
+    position: relative;
+}
+
+.health-text {
+    font-size: 1.2em;
+    color: #388e3c;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.health-quote {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    position: relative;
+}
+
+.health-question {
+    font-size: 1.8em;
+    color: #2e7d32;
+    margin-bottom: 30px;
+    font-weight: 700;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.run-button {
+    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    font-size: 1.3em;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.run-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
+    background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+}
+
+.run-button:active {
+    transform: translateY(0);
+}
+
+.run-button.clicked {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    cursor: default;
+}
+
+.success-message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #2e7d32;
+    font-weight: 600;
+    min-height: 30px;
+    position: relative;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .products-section {
+        flex-direction: column;
+    }
+
+    .product-card {
+        min-width: 100%;
+    }
+
+    .health-card {
+        padding: 30px 25px;
+    }
+
+    .health-title {
+        font-size: 1.6em;
+    }
+
+    .health-question {
+        font-size: 1.4em;
+    }
+
+    .run-button {
+        padding: 15px 35px;
+        font-size: 1.1em;
+    }
+}

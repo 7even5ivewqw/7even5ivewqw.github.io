@@ -1,0 +1,4 @@
+title: Hello World Jekyll
+description: A simple Hello World Jekyll site
+baseurl: ""
+url: "http://localhost:4000"

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        {{ content }}
+    </div>
+    <script>
+        function markAsRun() {
+            var button = document.querySelector('.run-button');
+            var message = document.getElementById('successMessage');
+            var today = new Date().toLocaleDateString('zh-CN');
+
+            if (button.classList.contains('clicked')) {
+                message.textContent = '今天已经完成跑步任务了，继续保持！🏆';
+                return;
+            }
+
+            button.classList.add('clicked');
+            button.textContent = '已完成今日跑步 🎉';
+            message.textContent = '太棒了！' + today + ' 的跑步任务已完成，记得补充水分哦！💚';
+
+            // 触发简单的庆祝动画
+            button.style.transform = 'scale(1.1)';
+            setTimeout(function() {
+                button.style.transform = 'scale(1)';
+            }, 200);
+        }
+    </script>
+</body>
+</html>
