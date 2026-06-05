@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/blog.css">
+</head>
+<body>
+    <header class="blog-header">
+        <nav class="nav-links">
+            <a href="#home" class="nav-link">首页</a>
+            <a href="#about" class="nav-link">关于</a>
+            <a href="#posts" class="nav-link">博文</a>
+            <a href="#message" class="nav-link">留言</a>
+            <a href="#upload" class="nav-link">上传</a>
+        </nav>
+    </header>
+
+    <main class="blog-content">
+        {{ content }}
+    </main>
+
+    <footer class="blog-footer">
+        <p>&copy; 2024 柒伍的博客 | 愿文字温暖时光</p>
+    </footer>
+
+    <script>
+        // 密码验证功能
+        function checkBirthday() {
+            var input = document.getElementById('birthday-input').value;
+            var result = document.getElementById('auth-result');
+            var uploadForm = document.getElementById('upload-section');
+            
+            if (input === '20041020') {
+                result.innerHTML = '<span style="color: #2e7d32;">✓ 验证通过，欢迎上传博文</span>';
+                uploadForm.style.display = 'block';
+            } else {
+                result.innerHTML = '<span style="color: #c62828;">✗ 答案错误，请重试</span>';
+                uploadForm.style.display = 'none';
+            }
+        }
+
+        // 留言提交功能
+        function submitMessage() {
+            var name = document.getElementById('message-name').value;
+            var email = document.getElementById('message-email').value;
+            var content = document.getElementById('message-content').value;
+            
+            if (!name || !content) {
+                alert('请填写姓名和留言内容');
+                return;
+            }
+            
+            var messages = document.getElementById('message-list');
+            var newMessage = document.createElement('div');
+            newMessage.className = 'message-item';
+            newMessage.innerHTML = `
+                <div class="message-header">
+                    <span class="message-name">${name}</span>
+                    <span class="message-time">${new Date().toLocaleString('zh-CN')}</span>
+                </div>
+                <p class="message-content">${content}</p>
+                ${email ? `<p class="message-email">📧 ${email}</p>` : ''}
+            `;
+            messages.prepend(newMessage);
+            
+            // 清空表单
+            document.getElementById('message-name').value = '';
+            document.getElementById('message-email').value = '';
+            document.getElementById('message-content').value = '';
+            
+            alert('留言提交成功！');
+        }
+    </script>
+</body>
+</html>

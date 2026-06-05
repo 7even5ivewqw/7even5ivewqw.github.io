@@ -19,6 +19,37 @@ body {
     padding: 30px 20px;
 }
 
+/* 导航样式 */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.nav-item {
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #2e7d32;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #4caf50;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.nav-item.active {
+    background: #4caf50;
+    color: white;
+}
+
 /* 顶部标题区 */
 .hero {
     text-align: center;

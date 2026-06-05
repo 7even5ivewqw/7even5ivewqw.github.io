@@ -3,6 +3,11 @@ layout: default
 title: 畅爽一夏，健康生活
 ---
 
+<nav class="main-nav">
+    <a href="/" class="nav-item active">首页</a>
+    <a href="/blog" class="nav-item">个人博客</a>
+</nav>
+
 <div class="hero">
     <h1 class="main-title">畅爽一夏，健康生活</h1>
     <p class="subtitle">清凉与美味，运动与健康，一个都不能少</p>
