@@ -11,7 +11,7 @@ title: 畅爽一夏，健康生活
 <div class="products-section">
     <div class="product-card left-card">
         <div class="product-image-wrapper sprite-wrapper">
-            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Sprite%20green%20bottle%20drink%20with%20bubbles%20on%20white%20background%20product%20photography&image_size=square_hd" alt="雪碧" class="product-image">
+            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Sprite%20green%20Chinese%20logo%20text%20on%20white%20background%20simple%20minimal%20design&image_size=square_hd" alt="雪碧" class="product-image">
         </div>
         <h2 class="product-name">雪碧 Sprite</h2>
         <p class="product-slogan">透心凉，心飞扬</p>
@@ -20,7 +20,7 @@ title: 畅爽一夏，健康生活
 
     <div class="product-card right-card">
         <div class="product-image-wrapper chocliz-wrapper">
-            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chocolate%20ice%20cream%20bar%20with%20crispy%20chocolate%20shell%20and%20cream%20filling%20product%20photography%20on%20white%20background&image_size=square_hd" alt="巧乐兹" class="product-image">
+            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chocliz%20ice%20cream%20bars%20packaging%20collection%20chocolate%20flavor%20purple%20yellow%20blue%20packs%20product%20photography%20on%20white%20background&image_size=square_hd" alt="巧乐兹" class="product-image">
         </div>
         <h2 class="product-name">巧乐兹 Chocliz</h2>
         <p class="product-slogan">脆皮甜蜜，舌尖诱惑</p>
